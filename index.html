@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>GEO5 - Interactive maps using HTML5 data tags, no coding!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GEO5 - Interactive maps using HTML5 data tags, no coding!">
+    <meta name="author" content="Bitcrafted by TIGGR 2013">
+
+    <!-- Le styles -->
+    <link href="./css/bootstrap.css" rel="stylesheet"/>
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet"/>
+    <link href="./css/docs.css" rel="stylesheet"/>
+    <link href="./css/prettify.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="./css/sharrre.css"/>
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="./js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <a href="https://github.com/MrTiggr/Geo5"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+    <header class="subhead" id="overview">
+      <div class="container">
+        <h1>GEO5 = HTML5 + Geo.</h1>
+        <p class="lead">Interactive maps using HTML5 data tags, no coding!</p>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Docs nav
+      ================================================== -->
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav">
+            <li><a href="#intro"><i class="icon-chevron-right"></i> Introduction</a></li>
+            <li><a href="#setup"><i class="icon-chevron-right"></i> Getting Started</a></li>
+            <li><a href="#maps"><i class="icon-chevron-right"></i> Making Maps</a></li>
+            <li><a href="#layers"><i class="icon-chevron-right"></i> Map Layers</a></li>
+            <li><a href="#customUI"><i class="icon-chevron-right"></i> Custom UI</a></li>
+            <li><a href="#symbology"><i class="icon-chevron-right"></i> Symbology</a></li>
+            <li><a href="#databinding"><i class="icon-chevron-right"></i> 2-Way Data Binding</a></li>
+            <li><a href="#features"><i class="icon-chevron-right"></i> Geo. Features</a></li>
+            <li><a href="#behaviours"><i class="icon-chevron-right"></i> Geo. Behaviours</a></li>
+            <li id="shareme" data-url="http://geo5.org/" data-text="Interactive maps using HTML5 data tags, no coding! #geo #leafletjs #knockoutjs #arcgis">
+            </li>
+          </ul>
+        </div>
+        <div class="span9">
+          <!-- Global GEO5 settings
+          ================================================== -->
+          <section id="intro">
+            <div class="page-header">
+              <h1>Introduction</h1>
+            </div>
+
+            <h3>NEWSFLASH! - "Geo." lives below the Internet Poverty Line</h3>
+            <p>For a long time, i have felt that "Geo" - <em>Spatial Content</em> has been relegated a role as a third-class denizen of The Internet and HTML(5) in particular...</p>
+            <p>Included as an afterthought or somehow shoe-horned into existing web technology by "propellor-head" developers in GIS dark rooms, Geo seems to have missed the calling that Video and Audio have recieved with the advent of HTML5.</p>
+            <p>Since almost the inception of HTML, the <code>&lt;MAP/&gt;</code> element has been a first class denizen of HTML and The Internet .... but, amazingly it still remains an <em>Image Map</em>; as opposed to a spatial representation of data.</p>
+            <p>GEO5 seeks to restore "Geo" as a first class denizen of the modern, HTML5, Internet by allowing content authors to markup their existing HTML content with Spatial/Geo context.  Further, it allows authors to bind HTML content to Geo. elements in a sophisticated manner regardless of choice of web technology without the need for specialist coding skills.</p>
+            <p>It is my hope that GEO5 can be leveraged to produce a range of new tools such as WordPress authoring plugins, Browser plugins and extensions and MS Office/OpenOffice tools to ease the authoring of "Geo" content by making it a first-class element of the modern content authoring process.</p>
+
+             <p><a href="./ArcGISExample.html"><strong>See a complete demo for ArcGIS Feature Layers here</strong></a></p>
+             <p><a href="./GeoJSONExample.html"><strong>See a complete demo for GeoJSON Feature Layers here</strong></a></p>
+          </section>
+          <section id="setup">
+            <div class="page-header">
+              <h1>Getting Started</h1>
+            </div>
+
+            <h3>Requires HTML5 doctype</h3>
+            <p>GEO5 makes use of certain HTML elements and CSS properties that require the use of the HTML5 doctype. Include it at the beginning of all your projects.</p>
+            <pre class="prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  ...
+&lt;/html&gt;
+            </pre>
+            <p>Now, here's a look at a <strong>typical HTML file</strong>:</p>
+            <pre class="prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;GEO5 Template&lt;/title&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, globe!&lt;/h1&gt;
+    &lt;script src="http://code.jquery.com/jquery.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+            <p>To make this <strong>a GEO5 template</strong>, just include the appropriate CSS and JS files:</p>
+            <pre class="prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;GEO5 Template&lt;/title&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;!-- GEO5 --&gt;
+    &lt;link href="http://geo5.org/css/geo5.css" rel="stylesheet" media="screen"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, Globe!&lt;/h1&gt;
+    &lt;script src="http://code.jquery.com/jquery.js"&gt;&lt;/script&gt;
+    &lt;script src="http://geo5.org/js/jquery.geo5.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+            </pre>
+            <p><strong>And you're set!</strong> With those two files added, you can begin to Geoenable any site with GEO5.</p>
+          </section>
+          <section id="maps">
+            <div class="page-header">
+              <h1>Making Maps</h1>
+            </div>
+
+            <h3>No Javascript Needed</h3>
+            <p>Adding Map Display components to your HTML pages should be as easy as including an appropriate tag on your existing HTML elements. With GEO5 it is <strong>exactly that easy!</strong></p>
+            <p>Turning a standard DIV element into an interactive web map display can be achieved with the following simple addition to your HTML:</p>
+            <pre class="prettyprint linenums">
+&lt;div id="myMap" data-geo-type="map" data-geo-basemap="Stamen.Toner"&gt;
+  ...
+&lt;/div&gt;
+            </pre>
+            <h3>Basemap Types</h3>
+            <p>GEO5 provides access to a wide variety of basemaps from free providers regardless of their format as well as basemaps from subscription and registered providers.</p>
+            <p>Selecting your basemap is as easy as setting the <strong>data-geo-basemap</strong> attribute on your map element:</p>
+            <div class="row well">
+              <div class="img-polaroid span2" style="height:175px">
+                <div id="myMap" style="height:150px" data-geo-type="map">
+                </div>
+                <small>(default)</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+                <div id="myMaposm" style="height:150px" data-geo-type="map" data-geo-basemap="OpenStreetMap.Mapnik">
+                </div>
+                <small>OpenStreetMap.Mapnik</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+               <div id="myMaposmbw" style="height:150px" data-geo-type="map" data-geo-basemap="OpenStreetMap.BlackAndWhite">
+               </div>
+               <small>OpenStreetMap.BlackAndWhite</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+               <div id="myMap1" style="height:150px" data-geo-type="map" data-geo-basemap="Stamen.Toner">
+               </div>
+               <small>Stamen.Toner</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+               <div id="myMap11" style="height:150px" data-geo-type="map" data-geo-basemap="Stamen.TonerBackground">
+               </div>
+               <small>Stamen.TonerBackground</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+              <div id="myMap13" style="height:150px" data-geo-type="map" data-geo-basemap="Stamen.TonerLines">
+              </div>
+              <small>Stamen.TonerLines</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+              <div id="myMap14" style="height:150px" data-geo-type="map" data-geo-basemap="Stamen.TonerLabels" data-geo-zoom="10">
+              </div>
+              <small>Stamen.TonerLabels</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+              <div id="myMap15" style="height:150px" data-geo-type="map" data-geo-basemap="Stamen.TonerLite">
+              </div>
+              <small>Stamen.TonerLite</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+              <div id="myMap2" style="height:150px" data-geo-type="map" data-geo-basemap="Esri.WorldImagery">
+              </div>
+              <small>Esri.WorldImagery</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+              <div id="myMap3" style="height:150px" data-geo-type="map" data-geo-basemap="Esri.WorldGrayCanvas">
+              </div>
+              <small>Esri.WorldGrayCanvas</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+              <div id="myMap17" style="height:150px" data-geo-type="map" data-geo-basemap="Acetate.all">
+              </div>
+              <small>Acetate.all</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+              <div id="myMap18" style="height:150px" data-geo-type="map" data-geo-basemap="Acetate.basemap" data-geo-zoom="5">
+              </div>
+              <small>Acetate.basemap</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+              <div id="myMap20" style="height:150px" data-geo-type="map" data-geo-basemap="Acetate.terrain">
+              </div>
+              <small>Acetate.terrain</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+              <div id="myMap21" style="height:150px" data-geo-type="map" data-geo-basemap="Acetate.roads">
+              </div>
+              <small>Acetate.roads</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+              <div id="myMap22" style="height:150px" data-geo-type="map" data-geo-basemap="Acetate.labels" data-geo-zoom="10">
+              </div>
+              <small>Acetate.labels</small>
+              </div>
+              <div class="img-polaroid span2" style="height:175px">
+              <div id="myMap23" style="height:150px" data-geo-type="map" data-geo-basemap="Acetate.hillshading" data-geo-zoom="9">
+              </div>
+              <small>Acetate.hillshading</small>
+              </div>
+             
+            </div>
+<pre class="row prettyprint linenums">
+&lt;div 
+  id="myMap" 
+  style="height:150px" 
+  data-geo-type="map"&gt;&lt;/div&gt;
+
+&lt;div 
+  id="myMap1" 
+  style="height:150px"  
+  data-geo-basemap="Stamen.Toner"&gt;&lt;/div&gt;
+
+
+&lt;div 
+  id="myMap2" 
+  style="height:150px"  
+  data-geo-basemap="Esri.WorldImagery"&gt;&lt;/div&gt;
+
+&lt;div 
+  id="myMap3" 
+  style="height:150px"  
+  data-geo-basemap="Esri.WorldGrayCanvas"&gt;&lt;/div&gt;
+....
+</pre>
+            <p>Current options suitable for basemaps are:</p>
+
+            <ul>
+            <li>OpenStreetMap
+
+            <ul>
+            <li>OpenStreetMap.Mapnik</li>
+            <li>OpenStreetMap.BlackAndWhite</li>
+            <li>OpenStreetMap.DE</li>
+            </ul>
+            </li>
+            <li>OpenCycleMap</li>
+            <li>Thunderforest
+
+            <ul>
+            <li>Thunderforest.OpenCycleMap</li>
+            <li>Thunderforest.Transport</li>
+            <li>Thunderforest.Landscape</li>
+            <li>Thunderforest.Outdoors</li>
+            </ul>
+            </li>
+            <li>OpenMapSurfer
+
+            <ul>
+            <li>Grayscale</li>
+            </ul>
+            </li>
+            <li>MapQuestOpen
+
+            <ul>
+            <li>MapQuestOpen.OSM</li>
+            <li>MapQuestOpen.Aerial</li>
+            </ul>
+            </li>
+            <li>Stamen
+
+            <ul>
+            <li>Stamen.Toner</li>
+            <li>Stamen.TonerBackground</li>
+            <li>Stamen.TonerHybrid</li>
+            <li>Stamen.TonerLines</li>
+            <li>Stamen.TonerLabels</li>
+            <li>Stamen.TonerLite</li>
+            <li>Stamen.Terrain</li>
+            <li>Stamen.TerrainBackground</li>
+            <li>Stamen.Watercolor</li>
+            </ul>
+            </li>
+            <li>Esri
+
+            <ul>
+            <li>Esri.WorldStreetMap</li>
+            <li>Esri.DeLorme</li>
+            <li>Esri.WorldTopoMap</li>
+            <li>Esri.WorldImagery</li>
+            <li>Esri.WorldTerrain</li>
+            <li>Esri.WorldShadedRelief</li>
+            <li>Esri.WorldPhysical</li>
+            <li>Esri.OceanBasemap</li>
+            <li>Esri.NatGeoWorldMap</li>
+            <li>Esri.WorldGrayCanvas</li>
+            </ul>
+            </li>
+            <li>Acetate
+
+            <ul>
+            <li>Acetate.all</li>
+            <li>Acetate.basemap</li>
+            <li>Acetate.terrain</li>
+            <li>Acetate.foreground</li>
+            <li>Acetate.roads</li>
+            <li>Acetate.labels</li>
+            <li>Acetate.hillshading</li>
+            </ul>
+            </li>
+            <li>
+            <ul>
+            <li>OpenSeaMap</li>
+            <li>OpenWeatherMap
+
+            <ul>
+            <li>OpenWeatherMap.Clouds</li>
+            <li>OpenWeatherMap.CloudsClassic</li>
+            <li>OpenWeatherMap.Precipitation</li>
+            <li>OpenWeatherMap.PrecipitationClassic</li>
+            <li>OpenWeatherMap.Rain</li>
+            <li>OpenWeatherMap.RainClassic</li>
+            <li>OpenWeatherMap.Pressure</li>
+            <li>OpenWeatherMap.PressureContour</li>
+            <li>OpenWeatherMap.Wind</li>
+            <li>OpenWeatherMap.Temperature</li>
+            <li>OpenWeatherMap.Snow</li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+          </section>
+          <section id="layers">
+            <div class="page-header">
+              <h1>Map Layers</h1>
+            </div>
+            <h3>Operational Layers made easy</h3>
+            <p>In addition to a variety of Basemaps, GEO5 provides the essential capability to include operational layers on your maps without Javascript coding</p>
+            <p>Adding an operational layer to a map is as easy as including an <strong>data-geo-type="tileLayer"</strong> attribute on any HTML element.</p>
+            <div class="row well">
+                <div id="mapWithLayers" style="height:350px" class="span8" data-geo-type="map" data-geo-basemap="Esri.WorldPhysical" data-geo-zoom="4" data-geo-centre="-25.95804467331783,131.1328125">
+                </div>
+                <div id="tempLayer" data-geo-type="tileLayer" data-geo-map="mapWithLayers" data-geo-layer-type="Stamen.TonerLabels"><small>Stamen.TonerLabels on Esri.WorldPhysical</small>
+                </div>
+            </div>
+<pre class="row prettyprint linenums">
+&lt;div 
+  id="mapWithLayers" 
+  style="height:350px" 
+  data-geo-type="map" 
+  data-geo-zoom="4" 
+  data-geo-basemap="Esri.WorldPhysical"
+  data-geo-centre="-25.95804467331783,131.1328125"&gt;&lt;/div&gt;
+&lt;div 
+  id="tempLayer" 
+  data-geo-type="tileLayer" 
+  data-geo-map="mapWithLayers" 
+  data-geo-layer-type="Stamen.TonerLabels"&gt;Stamen.TonerLabels on Esri.WorldPhysical&lt;/div&gt;
+</pre>
+            <h3>Raster Layers</h3>
+            <p>GEO5 supports a wide variety of raster/imagery based layer from many popular providers</p>
+            <p>To add a raster layer to any GEO5 map, you simply need to include an <strong>data-geo-type="tileLayer"</strong> attribute and specify the type of layer with the <code>data-geo-layer-type="{layertype}"</code> attribute.  Other options for the specific layer are also specified utilising <code>data-{LAYERTYPE}-{OPTION}="{VALUE}"</code> syntax.</p>
+            <p>As with all GEO5 components, you can include configuration options and settings directly on the HTML elements of your standard HTML page through the use of <code>data-*</code> attributes (a part of the HTML5 specification)</p>
+            <h4>ArcGIS Tiled MapService</h4>
+            <p>ArcGIS MapService's which are exposed with pre-cached tiles (Single Fused Map Cache). You can add ArcGIS MapService layers of this kind to your web pages by utilising the <code>data-geo-layer-type="ArcGIS"</code></p>
+            <div class="row well">
+                <div id="mapWithLayers2" style="height:350px" class="span8" data-geo-type="map" data-geo-basemap="Stamen.Watercolor" data-geo-zoom="4" data-geo-centre="-25.95804467331783,131.1328125">
+                </div><br/>
+                <a href="#" id="tempLayer5" data-geo-type="tileLayer" data-geo-map="mapWithLayers2" data-geo-layer-type="ArcGIS" data-geo-layer-url="http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer"></a>
+            </div>
+<pre class="row prettyprint linenums">
+&lt;div 
+  id="mapWithLayers2" 
+  style="height:350px" 
+  data-geo-type="map" 
+  data-geo-basemap="Stamen.Watercolor" 
+  data-geo-zoom="4" 
+  data-geo-centre="-25.95804467331783,131.1328125"&gt;&lt;/div&gt;
+
+&lt;a 
+  href="#" 
+  id="tempLayer5" 
+  data-geo-type="tileLayer" 
+  data-geo-map="mapWithLayers2" 
+  data-geo-layer-type="ArcGIS" 
+  data-geo-layer-url="http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer"&gt;&lt;/a&gt;
+</pre>  
+            <h4>OpenGeo WMS</h4>
+            <p>Open Geospatial Consortium (OGC) Web Mapping Service (WMS) layers are supported through the familiar attribute-based syntax within GEO5</p>
+            <div class="row well">
+                <div id="mapWithLayers1" style="height:350px" class="span8" data-geo-type="map" data-geo-basemap="Esri.WorldPhysical" data-geo-centre="8.407168163601076,18.6328125" data-geo-zoom=2 >
+                </div><br/>
+                <div id="tempLayer1" data-geo-type="tileLayer" data-geo-map="mapWithLayers1" data-geo-layer-type="WMS" data-geo-layer-url="http://demo.cubewerx.com/demo/cubeserv/cubeserv.cgi" data-wms-Layers="Foundation.gtopo30"><small>Cubewerx.gtopo30 on Esri.WorldPhysical</small>
+                </div>
+            </div>
+<pre class="row prettyprint linenums">
+&lt;div id="mapWithLayers1" 
+  style="height:350px"
+  data-geo-type="map" 
+  data-geo-basemap="Esri.WorldPhysical" 
+  data-geo-centre="8.407168163601076,18.6328125" 
+  data-geo-zoom=2 &gt;&lt;/div&gt;
+
+&lt;div id="tempLayer1" 
+  data-geo-type="tileLayer" 
+  data-geo-map="mapWithLayers1" 
+  data-geo-layer-type="wms" 
+  data-geo-layer-url="http://demo.cubewerx.com/demo/cubeserv/cubeserv.cgi" 
+  data-wms-Layers="Foundation.gtopo30"&gt;Cubewerx.gtopo30 on Esri.WorldPhysical on Esri.WorldPhysical&lt;/div&gt;
+</pre>           
+
+            <h4>Tiled Map Service (TMS)</h4>
+            <p>Generic Tile based map services (TMS) are supported by GEO5.  This allows you to access custom or proprietary Map Servives by specifying the format of the url endpoint utilised to access the service.</p>
+            <div class="row well">
+                <div id="mapWithLayers11" style="height:350px" class="span8" data-geo-type="map" data-geo-basemap="Stamen.Watercolor" data-geo-centre="-35.28857698047821,149.1460132598877" data-geo-zoom=14 >
+                </div><br/>
+                <div id="tempLayer11" data-geo-type="tileLayer" data-geo-map="mapWithLayers11" data-geo-layer-type="TMS" data-geo-layer-url="http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}"><small>Esri.WorldStreets on Stamen.Watercolor</small>
+                </div>
+            </div>
+<pre class="row prettyprint linenums">
+&lt;div id="mapWithLayers11" 
+  style="height:350px" 
+  data-geo-type="map" 
+  data-geo-basemap="Stamen.Watercolor" 
+  data-geo-centre="-35.28857698047821,149.1460132598877" 
+  data-geo-zoom=14 &gt;&lt;/div&gt;
+&lt;div 
+  id="tempLayer11" 
+  data-geo-type="tileLayer" 
+  data-geo-map="mapWithLayers11" 
+  data-geo-layer-type="TMS"
+  data-geo-layer-url="http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}"&gt;&lt;/div&gt;
+</pre>
+
+            <h3>Vector Layers</h3>
+            <p>GEO5 supports a variety of Vector layers with complex Cartographic styilng capabilites available without the necessity of Javascript code.</p>
+            <p>Without modification or inclusion of additional plugin scripts [see Geo. Behaviours], the following vector layer types are supported: </p>
+            <ul>
+              <li>GeoJSON</li>
+              <li>ArcGIS Feature Services</li>
+              <li>CSV</li>
+              <li>KML</li>
+              <li>GPX</li>
+            </ul>
+            <p>The content for any <em>featureLayer</em> can be specified using the <strong>data-geo-url , src or href</strong> attributes on your HTML elements. Content can also be provided as the contents of a SCRIPT tag with the <strong>type="text/geoJSON"</strong> attribute set.  In this way, spatial content can be directly embedded in your HTML without any visible trace.</p>
+            <br/>
+            <h4>ArcGIS Feature Services</h4>
+            <p>Including ArcGIS Feature Services on your maps with GEO5 simply requires the inclusion of the <strong>data-geo-type="featureLayer"</strong> and specifying the appropriate <strong>data-geo-layer-type="arcgis"</strong> attribute.</p>
+            <p>By default, GEO5 when used with an ArcGIS Server Feature Service, uses symbology and scaleRange options from ArcGIS Server.
+            This lets your write less code and use the symbology and scale dependent rendering you've spent many hours developing with ArcGIS Desktop.</p>
+            <div class="row well">
+              <div id="mapWithLayers22" style="height:350px" class="span8" data-geo-type="map" data-geo-basemap="Esri.WorldGrayCanvas" data-geo-centre="37.78730132936438,-122.42460250854492" data-geo-zoom=16>
+              </div>
+            </div><a id="tempLayer22" class="row" data-geo-type="featureLayer" data-geo-layer-type="arcgis" data-geo-map="mapWithLayers22" href="http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/SanFrancisco/311Incidents/FeatureServer/0" data-layer-popup-template="<h5>{req_type}</h5>"><small>ArcGIS Feature Service Layer Showing San-Francisco 311 Incidents on Stamen.Toner basemap</small></a>
+            <p>Is achieved simply through the following code...</p>
+<pre class="row prettyprint linenums">
+&lt;div id="mapWithLayers22" 
+  style="height:350px" 
+  data-geo-type="map" 
+  data-geo-basemap="Esri.WorldGrayCanvas" 
+  data-geo-centre="37.78730132936438,-122.42460250854492" 
+  data-geo-zoom=16&gt;&lt;/div&gt;
+
+&lt;a id="tempLayer22" 
+  data-geo-type="featureLayer" 
+  data-geo-layer-type="arcgis" 
+  data-geo-map="mapWithLayers22" 
+  href="http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/SanFrancisco/311Incidents/FeatureServer/0" 
+  data-layer-popup-template="&lt;h5&gt;{req_type}&lt;/h5&gt;"&gt;ArcGIS Feature Service Layer Showing San-Francisco 311 Incidents on Stamen.Toner basemap&lt;/a&gt;
+</pre>
+            <h4>GeoJSON</h4>
+            <p>Including GeoJSON features on your maps with GEO5 simply requires the inclusion of the <strong>data-geo-type="featureLayer"</strong> and specifying the appropriate <code>data-geo-layer-type="geojson"</code> attribute</p>
+            <div class="row well">
+              <div id="mapWithLayers20" style="height:350px" class="span8" data-geo-type="map" data-geo-basemap="Stamen.TonerBackground" data-geo-zoom=1>
+              </div><br/>
+              <a id="tempLayer20" data-geo-type="featureLayer" data-geo-layer-type="geojson" data-geo-map="mapWithLayers20" href="./data/countries.geo.json" data-layer-popup-template="<h5>{name}</h5>"><small>CountriesOfTheWorld GeoJSON</small>
+              </a>
+            </div>
+<pre class="row prettyprint linenums">
+&lt;div id="mapWithLayers20" 
+  style="height:350px" 
+  data-geo-type="map" 
+  data-geo-basemap="Stamen.TonerBackground" 
+  data-geo-zoom=1 &gt;&lt;/div&gt;
+&lt;a id="tempLayer20" 
+  data-geo-type="featureLayer" 
+  data-geo-layer-type="geojson" 
+  data-geo-map="mapWithLayers20" 
+  href="./data/countries.geo.json"&gt;
+CountriesOfTheWorld GeoJSON
+&lt;/a&gt;
+</pre>
+            <h4>GeoCSV</h4>
+            <p>Including CSV Marker features on your maps with GEO5 simply requires the inclusion of the <strong>data-geo-type="featureLayer"</strong> and specifying the appropriate <strong>data-geo-layer-type="csv"</strong> attribute</p>
+            <p>In this example, the GeoCSV content in included directly within the content of a PRE tag in the HTML, demonstrating GEO5's capability to enrich existing HTML with spatial content.</p>
+            <div class="row well">
+              <div id="mapWithLayers21" style="height:350px" class="span8" data-geo-type="map" data-geo-basemap="Stamen.TonerBackground" data-geo-zoom=3>
+              </div><br/><br/>
+            </div>
+<pre id="tempLayer21" class="row linenums hide" data-geo-type="featureLayer" data-geo-layer-type="csv" data-geo-map="mapWithLayers21">48.8566,2.3522,París - Capital of France
+40.4168,-3.7038,Madrid - Capital of Spain
+41.9015,12.4608,Rome - Capital of Italy
+37.9837,23.7293,Athens - Capital of Greece
+</pre>
+<ul data-geo-binding="tempLayer21" data-bind="foreach: features">
+    <li data-bind="with: properties">
+        <span data-bind="text: $data.title"> </span>
+    </li>
+</ul>
+<p>Is achieved simply through the following code...</p>
+<pre class="row prettyprint linenums">
+&lt;div id="mapWithLayers21" 
+  style="height:350px" 
+  data-geo-type="map" 
+  data-geo-basemap="Stamen.TonerBackground" 
+  data-geo-zoom=3&gt;&lt;/div&gt;
+&lt;pre id="tempLayer21"
+  data-geo-type="featureLayer" 
+  data-geo-layer-type="csv" 
+  data-geo-map="mapWithLayers21">48.8566,2.3522,París - Capital of France
+40.4168,-3.7038,Madrid - Capital of Spain
+41.9015,12.4608,Rome - Capital of Italy
+37.9837,23.7293,Athens - Capital of Greece&lt;/pre&gt;
+</pre>
+            
+            <h4>GPX track files</h4>
+            <p>Including GPX track data on your maps with GEO5 simply requires the inclusion of the <strong>data-geo-type="featureLayer"</strong> and specifying the appropriate <strong>data-geo-layer-type="gpx"</strong> attribute.</p>
+            
+            <div class="row well">
+              <div id="mapWithLayers255" style="height:350px" class="span8" data-geo-type="map" data-geo-basemap="Esri.WorldGrayCanvas" data-geo-centre="38.636718267483616,-121.34674072265624" data-geo-zoom=11></div>
+            </div>
+            <a id="tempLayer25" class="row" data-geo-type="featureLayer" data-geo-layer-type="gpx" data-geo-map="mapWithLayers255" href="./data/demo.gpx.xml"><small>GPS track from California International Marathon</small></a>
+<pre class="row prettyprint linenums">
+&lt;div id="mapWithLayers255" 
+  style="height:350px" 
+  data-geo-type="map" 
+  data-geo-basemap="Esri.WorldGrayCanvas" 
+  data-geo-centre="38.636718267483616,-121.34674072265624" data-geo-zoom=11&gt;&lt;/div&gt;
+
+&lt;a id="tempLayer25" 
+  data-geo-type="featureLayer" 
+  data-geo-layer-type="gpx" 
+  data-geo-map="mapWithLayers255" 
+  href="./data/demo.gpx.xml"&gt;GPS track from California International Marathon&lt;/a&gt;
+</pre>
+            <h4>KML files</h4>
+            <p>Including KML content on your maps with GEO5 simply requires the inclusion of the <strong>data-geo-type="featureLayer"</strong> and specifying the appropriate <strong>data-geo-layer-type="kml"</strong> attribute.</p>
+            <div class="row well">
+              <div id="mapWithLayers256" style="height:350px" class="span8" data-geo-type="map" data-geo-basemap="Esri.WorldGrayCanvas" data-geo-zoom=13></div>
+            </div>
+            <a id="tempLayer26" class="row" data-geo-type="featureLayer" data-geo-layer-type="kml" data-geo-map="mapWithLayers256" href="./data/kml-example.kml.xml"><small>Simple KML Features example</small></a>
+<pre class="row prettyprint linenums">
+&lt;div id="mapWithLayers256" 
+  style="height:350px" 
+  data-geo-type="map" 
+  data-geo-basemap="Esri.WorldGrayCanvas"
+  data-geo-zoom=13&gt;&lt;/div&gt;
+
+&lt;a id="tempLayer25" 
+  data-geo-type="featureLayer" 
+  data-geo-layer-type="kml" 
+  data-geo-map="mapWithLayers256" 
+  href="./data/kml-example.kml.xml"&gt;Simple KML Features example&lt;/a&gt;
+</pre>
+          </section>
+          <section id="customUI">
+            <div class="page-header">
+              <h1>Custom UI</h1>
+            </div>
+            <h3>Dynamic content without coding</h3>
+            <p>In addition to providing seamless integration of your spatial content with your HTML applications, GEO5 provides a comprehensive binding capablilty which allows you to customize most components of the standard Map interface via HTML inclusions.</p>
+            <p>GEO5 also provides a comprehensive 2-Way binding mechanism (based upon Knockout.js) which allows you to directly bind HTML elements to Map and Layer properties in a 2-Way fashion.  This method of binding is specified utilising HTML5 <strong>data-*</strong> attributes and produces HTML interfaces which allow you to update map/layer properties without coding effort. Likewise, any changes in the map/layer properties which occur will be reflected automagically in your HTML!</p>
+            <h4>Popup Templates</h4>
+            <p>Popup information windows for the features on your layers are an integral part of any GIS application. GEO5 provides sensible default templates for popups on all of your Operational Layers. Sometimes, however, sensible is not enough.</p>
+            <p>You can provide templates for your Popup InfoWindows by specifing the HTML content for the popup within the <strong>data-layer-popup-template</strong> of the element specifying your layer within your HTML.</p>
+            <p>In order to provide further flexibility in Popup InfoWindows, you may utilise the popular <code>{Mustache}</code> style templating syntax to dynamically insert the values of the attributes/properties of the feature for each popup.</p>
+
+<pre class="row prettyprint linenums">
+&lt;a id="tempLayer22" 
+  data-geo-type="featureLayer" 
+  data-geo-layer-type="arcgis" 
+  data-geo-map="mapWithLayers22" 
+  href="http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/SanFrancisco/311Incidents/FeatureServer/0" 
+  <b>data-layer-popup-template="&lt;h5&gt;{req_type}&lt;/h5&gt;"</b>&gt;ArcGIS Feature Service Layer Showing San-Francisco 311 Incidents on Stamen.Toner basemap&lt;/a&gt;
+</pre>
+
+            <p>In more compex situations, you can customise the look and feel of your info windows by binding an additional element to the associated layer. Although the element you choose for you custom content may be any HTML element, in order to include complex templates in your application with polluting the visual HTML, it is recommended to use the <code>SCRIPT</code> element with a type attribute other than <em>type="text/javascript"</em>.  To provide additional semantic context to your HTML, it is recommended that you use the format <code>type="geo/content-type"</code></p>
+            
+            <div class="row well">
+              <div id="mapWithPopup" style="height:350px" class="span8" data-geo-type="map" data-layer-showall="true" data-geo-basemap="None" data-geo-centre="45.52751668442124, -122.67175197601318" data-geo-zoom=14>
+              </div>
+              <div id="tempLayer111" data-geo-type="tileLayer" data-geo-map="mapWithPopup" data-geo-layer-type="TMS" data-geo-layer-url="http://otile3.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png"></div>
+            </div><a id="popupBikeLayer" class="row" data-geo-type="featureLayer" data-geo-layer-type="arcgis" data-geo-map="mapWithPopup" href="http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/bike_rte/FeatureServer/0" ><small>ArcGIS Feature Service on Stamen.Toner basemap with custom Popup Window</small></a>
+
+            <script type="geo/layer-popup-template" data-geo-type="layerPopup" data-geo-layer="popupBikeLayer" data-content-type="template">
+            <h3>{BIKEMODE}</h3>
+            <h4>{PREFIX} {STREETNAME} {FTYPE}</h4>
+            </script>
+
+            <script type="geo/layer-style" data-geo-type="geoStyle" data-geo-layer="popupBikeLayer">
+            {
+                type: "unique",
+                property: "BIKEMODE",
+                values: [
+                    {
+                        value: "Low traffic through street",
+                        vectorOptions: {
+                            color: "#007D7D",
+                            opacity: 0.5,
+                            weight: 2.5,
+                            title:"{BIKEMODE}"
+                        }
+                    },
+                    {
+                        value: "Bike boulevard",
+                        vectorOptions: {
+                            color: "#00FF3C",
+                            opacity: 0.5,
+                            weight: 2.5,
+                            title:"{BIKEMODE}"
+                        }
+                    },
+                    {
+                        value: "Caution area",
+                        vectorOptions: {
+                            color: "#FF0000",
+                            opacity: 1.0,
+                            weight:3.5,
+                            title:"{BIKEMODE}"
+                        }
+                    },
+                    {
+                        value: "Local multi-use path",
+                        vectorOptions: {
+                            color: "#00BEFF",
+                            opacity: 0.5,
+                            weight: 2.5,
+                            title:"{BIKEMODE}"
+                        }
+                    },
+                    {
+                        value: "Regional multi-use path",
+                        vectorOptions: {
+                            color: "#b1a9d0",
+                            opacity: 0.5,
+                            weight: 3.0,
+                            title:"{BIKEMODE}"
+                        }
+                    },
+                    {
+                        value: "Moderate traffic through street",
+                        vectorOptions: {
+                            color: "#FFEB00",
+                            opacity: 0.5,
+                            weight: 3.0,
+                            title:"{BIKEMODE}"
+                        }
+                    },
+                    {
+                        value: "Planned multi-use path",
+                        vectorOptions: {
+                            color: "#000000",
+                            opacity: 0.5,
+                            weight: 2.0,
+                            title:"{BIKEMODE}"
+                        }
+                    },
+                    {
+                        value: "Bike lane",
+                        vectorOptions: {
+                            color: "#328000",
+                            opacity: 0.75,
+                            weight: 2.0,
+                            title:"{BIKEMODE}"
+                        }
+                    },
+                    {
+                        value: "High traffic through street",
+                        vectorOptions: {
+                            color: "#FFA500",
+                            opacity: 0.5,
+                            weight: 3.25,
+                            title:"{BIKEMODE}"
+                        }
+                    },
+                    {
+                        value: "Planned bike lane",
+                        vectorOptions: {
+                            color: "#000000",
+                            opacity: 1.0,
+                            weight: 2.5,
+                            title:"{BIKEMODE}"
+                        }
+                    }     
+                ]    
+            }</script>
+            <h5>Templated HTML Popups</h5>
+            <p>For moderately complex Popup Content, you can use the familiar <code>{Mustache}</code> style of templating within a SCRIPT tag as below:</p>
+<pre class="row prettyprint linenums">
+&lt;div id="mapWithPopup" 
+  style="height:350px" 
+  data-geo-type="map" 
+  data-geo-basemap="None" 
+  data-geo-centre="45.52751668442124, -122.67175197601318" 
+  data-geo-zoom=14&lt;/div&gt;
+
+&lt;!--  ... base layers and operational layers .... --&gt;
+
+&lt;script type="geo/layer-popup-template" 
+    data-geo-type="layerPopup" 
+    data-geo-layer="popupBikeLayer" 
+    <strong>data-content-type="template"</strong>&gt;
+&lt;h3&gt;{BIKEMODE}&lt;/h3&gt;
+&lt;h4&gt;{PREFIX} {STREETNAME} {FTYPE}&lt;/h4&gt;
+&lt;/script&gt;
+</pre>
+            <h5>Scripted HTML Popups</h5>
+            <p>For additionally complex HTML templating that go beyond the capability of <code>{Mustache}</code> templating, GEO5 allows you to specify Popup Templates with a Javascript function block which is called for each Feature rendered to your layer.</p>
+            <p>This script block should utilise the attributes of the passed-in feature (passed as a parameter named <b>properties</b>)  and return a HTML string to be utilised for the popup of the associated feature.</p
+            <p>In a manner similar to mustache templated popups, you may included the Javascript body of your templating function within a SCRIPT tag as below:</p>
+<pre class="row prettyprint linenums">
+&lt;div id="mapWithPopup" 
+  style="height:350px" 
+  data-geo-type="map" 
+  data-geo-basemap="None" 
+  data-geo-centre="45.52751668442124, -122.67175197601318" 
+  data-geo-zoom=14&lt;/div&gt;
+
+&lt;!--  ... base layers and operational layers .... --&gt;
+
+&lt;script type="geo/layer-popup-template" data-geo-type="layerPopup" data-geo-layer="popupBikeLayer" <strong>data-content-type="script"</strong>&gt;
+
+  <strong>console.log("infowindow script ==&gt;",properties);
+  return "&lt;h3&gt;"+properties["BIKEMODE"]+"&lt;/h3&gt;&lt;h4&gt;"+properties["PREFIX"]+" "+properties["STREETNAME"]+" "+properties["FTYPE"]+"&lt;/h4&gt;";</strong>
+
+&lt;/script&gt;
+</pre>
+          </section>
+          <section id="symbology">
+            <div class="page-header">
+              <h1>Custom Symbology</h1>
+            </div>
+            <h4>Symbology without coding</h4>
+            <p>GEO5 provides the default capability to honour the Symbology options of your ArcGIS Feature Layers. Applying your styles for images, line styleing coloring and fills based upon the hard work you have performed within ArcGIS Desktop.</p>
+            <p>As well as this useful capability, GEO5 allows you to utilise a standard JSON based styling language to dynamically style any of your Vector Layers.</p>
+            <p>Compelling, dynamically styled vector features can be created within the browser without the need for Javascript coding via the use of GEO5's GeoStyle objects</p>
+            <p>In the previous map example, the bike routes are dynamically styled in the browser based upon a Unique Value classification.</p>
+            <p>The geoStyle code utilised to achieve this is included below:</p>
+
+<pre class="row prettyprint linenums">
+&lt;!--  ... Map, base layers, operational layers, Templates .... --&gt;
+&lt;script <strong>type="geo/layer-style" data-geo-type="geoStyle"</strong> data-geo-layer="popupBikeLayer"&gt;
+{
+  type: "unique",
+  property: "BIKEMODE",
+  values: [
+    {
+        value: "Low traffic through street",
+        vectorOptions: {
+            color: "#007D7D",
+            opacity: 0.5,
+            weight: 2.5,
+            title:"{BIKEMODE}"
+        }
+    },{
+        value: "Bike boulevard",
+        vectorOptions: {
+            color: "#00FF3C",
+            opacity: 0.5,
+            weight: 2.5,
+            title:"{BIKEMODE}"
+        }
+    },{
+        value: "Caution area",
+        vectorOptions: {
+            color: "#FF0000",
+            opacity: 1.0,
+            weight:3.5,
+            title:"{BIKEMODE}"
+        }
+    },{
+        value: "Local multi-use path",
+        vectorOptions: {
+            color: "#00BEFF",
+            opacity: 0.5,
+            weight: 2.5,
+            title:"{BIKEMODE}"
+        }
+    },{
+        value: "Regional multi-use path",
+        vectorOptions: {
+            color: "#b1a9d0",
+            opacity: 0.5,
+            weight: 3.0,
+            title:"{BIKEMODE}"
+        }
+    },{
+        value: "Moderate traffic through street",
+        vectorOptions: {
+            color: "#FFEB00",
+            opacity: 0.5,
+            weight: 3.0,
+            title:"{BIKEMODE}"
+        }
+    },{
+        value: "Planned multi-use path",
+        vectorOptions: {
+            color: "#000000",
+            opacity: 0.5,
+            weight: 2.0,
+            title:"{BIKEMODE}"
+        }
+    },{
+        value: "Bike lane",
+        vectorOptions: {
+            color: "#328000",
+            opacity: 0.75,
+            weight: 2.0,
+            title:"{BIKEMODE}"
+        }
+    },{
+        value: "High traffic through street",
+        vectorOptions: {
+            color: "#FFA500",
+            opacity: 0.5,
+            weight: 3.25,
+            title:"{BIKEMODE}"
+        }
+    },{
+        value: "Planned bike lane",
+        vectorOptions: {
+            color: "#000000",
+            opacity: 1.0,
+            weight: 2.5,
+            title:"{BIKEMODE}"
+        }
+    }
+  ]    
+}
+&lt;/script&gt;
+</pre>          
+                <p class="docs">Symbology for a layer can be defined a few different ways including <code>single</code>, <code>unique</code> and <code>range</code>. If no symbology is defined the default Leaflet vector styles will be used.</p>
+                
+                <p class="docs">When instantiating a new layer, use one of the options below when setting the <code>symbology</code> option value.</p>
+                
+                <h3>single</h3>
+                
+                <p class="docs">The <code>single</code> type displays all features with the same symbology.</p>
+                
+                <pre class="prettyprint docs">{
+    type: "single", // Defines the symbology as a single type of representation for all features
+    vectorOptions: { // Leaflet Path options for all features
+        fillColor: "#46461f",
+        fillOpacity: 0.5,
+        weight: 4,
+        color: "#ff7800"
+    }    
+}</pre>
+                
+                <h3>unique</h3>
+                
+                <p class="docs">The <code>unique</code> type displays features with the same attibute values with the same symbology. This is helpful when you have a handful of discrete values for which you want to define symbology.</p>
+              
+                
+                <pre class="prettyprint docs">{
+    type: "unique", // Defines the symbology as a unique type where features with an attribute of a specific value are symbolized the same way
+    property: "DISTRICT", // The property (field, attribute) to use for defining unique values and styles
+    values: [ // An array of values to set symbology. Each value has a specific symbology
+        {
+            value: "A", // If feature.properties.DISTRICT == "A"
+            vectorOptions: { // Use these Leaflet Path options for features matching
+                fillColor: "#6600FF",
+                fillOpacity: 0.6,
+                color: "#666666",
+                opacity: 0.8,
+                weight: 1
+            }
+        },
+        {
+            value: "B",
+            vectorOptions: {
+                fillColor: "#660066",
+                fillOpacity: 0.6,
+                color: "#666666",
+                opacity: 0.8,
+                weight: 1
+            }
+        },
+        {
+            value: "C",
+            vectorOptions: {
+                fillColor: "#FF9900",
+                fillOpacity: 0.6,
+                color: "#666666",
+                opacity: 0.8,
+                weight: 1
+            }
+        }
+    ]
+}</pre>
+                
+                <h3>range</h3>
+                
+                <p class="docs">The <code>range</code> type tests values to see if they are within a specified range and symbolizes them accordingly. This is helpful for datasets that have values with lots of individual values like population counts per county in the US or in this example, vehicle speeds.</p>
+                
+                <pre class="prettyprint docs">{
+    type: "range", // Defines the symbology as a range type where values above a minimum and below a maximum value are symbolized the same way
+    property: "SPEED", // The property (field, attribute) to use for defining range values and styles
+    ranges: [ // An array of value ranges to set symbology. Each value range has a specific symbology.
+        {
+            range: [1, 20], // if feature.properties.SPEED &gt;= 1 AND feature.properties.SPEED &lt;= 20
+            vectorOptions: { // Use these Leaflet Path options for features with values in this range
+                icon: new customIcon({
+                    iconUrl: "../../docs-demo/img/markers/bus-brown.png"
+                })
+            }
+        },{
+            range: [21, 100],
+            vectorOptions: {
+                icon: new customIcon({
+                    iconUrl: "../../docs-demo/img/markers/bus-green.png"
+                })
+            }
+        }
+    ]
+}</pre>
+          </section>
+          <section id="databinding">
+            <div class="page-header">
+              <h1>2-Way Data Binding</h1>
+            </div>
+            <h3>Binding yout HTML to Spatial content</h3>
+            <p>GEO5 implements 2-way DataBinding through the use of <a href="http://KnockoutJS.com">KnockoutJS</a>.  For a complete guide to the data binding language syntax and capability please see the KnockoutJS website.</p>
+            <p>DataBinding works by attatching observers to the properties and methods of a Data Model and updating HTML DOM Elements which are associated with them. 2-Way binding also observes any changes to HTML DOM elements and populates the associated property on the bound DataModel (Object).</p>
+            <p>GEO5 automates the task of binding HTML elements in your page to the <strong>Map, Layer</strong> and <strong>Feature</strong> objects you have defined with GEO5. With full 2-way capability, this allows you to attatch, for instance, a HTML input element (CSS3 styled as a Slider of course!) to the Zoom property of the map to provide an instant Zoom Slider control for your maps.</p>
+            <p>Similarly, you could bind an accordion panel to the <strong>Layers</strong> property of the map to produce an interactive legend capable of controlling transparency and visibility; or you might choose to bind a HTML Table to the <strong>Features</strong> collection of a filtered Feature Service to provide an interactive tabular view of the features on your map.</p>
+            <p>The bounds of what you can create with 2-way bound elements within your HTML are limited only by imagination. The ease at which both the physical Map and bound elements update in reaction to changes in the other <strong>without any need to write Javascript code</strong> mean that GeoEnabled content can be created by authors rather than developers utilising more common tools such as Bloggin Platforms / CMS.</p>
+            <p>This also means that content can be enriched in-situ within existing documetns without the need to alter layout.  Even with javascript disabled or no map ever displayed, the additional information included in your content will mean that Spatial Search engines can more accurately index and find the exact content your audience are looking for.</p>
+
+            <h4>Binding to Map Content</h4>
+            <p><em>LOOK MA', NO JAVASCRIPT!</em> The following display was created without the need for any coding experience or Javascript code:</p>
+            <div class="row well">
+              <div class="span6" data-geo-type="map"  data-geo-basemap="Stamen.Toner" id="boundMap" style="height:350px"></div>
+              <div class="span2" data-geo-binding="boundMap">
+                <h5>Map Properties</h5>
+                <form class="form-inline">
+                  <label>Zoom: </label><input type="text" id="txtMapZoom" data-bind="value: zoom, valueUpdate:'keypress'" class="input-mini" />
+                  <!--<label>Zoom: </label><input type="text" id="txtMapZoom" data-bind="value: zoom, valueUpdate:'change'" class="slideControl" />-->
+                  <h6>Centre</h6>
+                  <p data-bind="with: centre">
+                    Latitude: <span data-bind="text: lat"> </span>,
+                    Longitude: <span data-bind="text: lng"> </span>
+                  </p>
+                  <h6>Mouse Location</h6>
+                  <p data-bind="with: mouseLocation">
+                    Latitude: <span data-bind="text: lat"> </span>,
+                    Longitude: <span data-bind="text: lng"> </span>
+                  </p>
+                </form>
+              </div>
+            </div>
+            <p>.. created simply with the following HTML markup:</p>
+<pre class="row prettyprint linenums">
+&lt;div data-geo-type="map"  data-geo-basemap="Stamen.Toner" id="boundMap" style="height:350px"&gt;&lt;/div&gt;
+&lt;div data-geo-binding="boundMap"&gt;
+  &lt;h5&gt;Map Properties&lt;/h5&gt;
+    Zoom: &lt;input type="text" id="txtMapZoom" data-bind="value: zoom, valueUpdate:'keypress'" /&gt;
+    &lt;h6&gt;Centre&lt;/h6&gt;
+    &lt;p data-bind="with: centre"&gt;
+      Latitude: &lt;span data-bind="text: lat"&gt; &lt;/span&gt;,
+      Longitude: &lt;span data-bind="text: lng"&gt; &lt;/span&gt;
+    &lt;/p&gt;
+    &lt;h6&gt;Mouse Location&lt;/h6&gt;
+    &lt;p data-bind="with: mouseLocation"&gt;
+      Latitude: &lt;span data-bind="text: lat"&gt; &lt;/span&gt;,
+      Longitude: &lt;span data-bind="text: lng"&gt; &lt;/span&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+</pre>
+
+            <h4>Binding to Layer Content</h4>
+              <p>Making a Layer visibility display? .. Easy with GEO5!</p>
+              <div class="row well">
+                <div class="span6" data-geo-type="map"  data-geo-basemap="Stamen.Watercolor" id="boundMap1" style="height:350px" data-geo-zoom="4" data-geo-centre="-25.95804467331783,131.1328125"></div>
+                <div id="lyrRef" data-geo-layer-title="World Ref." data-geo-type="tileLayer" data-geo-map="boundMap1" data-geo-layer-type="ArcGIS" data-geo-layer-url="http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer"></div>
+                <div id="lyrPlacesBoundaries" data-geo-layer-title="Boundaries and Places" data-geo-type="tileLayer" data-geo-map="boundMap1" data-geo-layer-type="ArcGIS" data-geo-layer-url="http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places_Alternate/MapServer"></div>
+                <div id="lyrTransport" data-geo-layer-title="Transportation" data-geo-type="tileLayer" data-geo-map="boundMap1" data-geo-layer-type="ArcGIS" data-geo-layer-url="http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer"></div>
+                <div data-geo-binding="lyrRef" class="span2">
+                     <input type="checkbox" data-bind="checked: visible"> <span data-bind="text: title"></span></input>
+                </div>
+                <div data-geo-binding="lyrPlacesBoundaries" class="span2">
+                    <input type="checkbox" data-bind="checked: visible"> <span data-bind="text: title"></span></input>
+                </div>
+                <div data-geo-binding="lyrTransport" class="span2">
+                    <input type="checkbox" data-bind="checked: visible"> <span data-bind="text: title"></span></input>
+                </div>
+              </div>
+              <p>...Done like this (did i forget the javascript?  .. no!) :</p>
+<pre class="row prettyprint linenums">
+&lt;div 
+  data-geo-type="map" 
+  data-geo-basemap="Stamen.Watercolor" 
+  <strong>id="boundMap1"</strong> 
+  style="height:350px" 
+  data-geo-zoom="4" data-geo-centre="-25.95804467331783,131.1328125"&gt;&lt;/div&gt;
+&lt;div id="lyrRef" 
+  data-geo-layer-title="World Ref." 
+  data-geo-type="tileLayer" 
+  data-geo-map="boundMap1" 
+  data-geo-layer-type="ArcGIS" data-geo-layer-url="http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Reference_Overlay/MapServer"&gt;&lt;/div&gt;
+&lt;div id="lyrPlacesBoundaries" 
+  data-geo-layer-title="Boundaries and Places" 
+  data-geo-type="tileLayer" 
+  data-geo-map="boundMap1" 
+  data-geo-layer-type="ArcGIS" data-geo-layer-url="http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places_Alternate/MapServer"&gt;&lt;/div&gt;
+&lt;div id="lyrTransport" 
+  data-geo-layer-title="Transportation" 
+  data-geo-type="tileLayer" 
+  data-geo-map="boundMap1" 
+  data-geo-layer-type="ArcGIS" data-geo-layer-url="http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer"&gt;&lt;/div&gt;
+
+
+&lt;div <strong>data-geo-binding="lyrRef"</strong>&gt;
+     &lt;input type="checkbox" data-bind="checked: visible"&gt; &lt;span data-bind="text: title"&gt;&lt;/span&gt;&lt;/input&gt;
+&lt;/div&gt;
+
+&lt;div <strong>data-geo-binding="lyrPlacesBoundaries"</strong> class="span2"&gt;
+    &lt;input type="checkbox" data-bind="checked: visible"&gt; &lt;span data-bind="text: title"&gt;&lt;/span&gt;&lt;/input&gt;
+&lt;/div&gt;
+
+&lt;div <strong>data-geo-binding="lyrTransport"</strong> class="span2"&gt;
+    &lt;input type="checkbox" data-bind="checked: visible"&gt; &lt;span data-bind="text: title"&gt;&lt;/span&gt;&lt;/input&gt;
+&lt;/div&gt;
+</pre>              
+            <h4>Binding to Feature Content</h4>
+            <p>In the same way in which you can automatically bind your HTML to the <code>Map</code> and <code>Layer</code> objects you can also bind your HTML elements directly to the <code>Features</code> on your Vector layers.</p>
+            <p>Utilising this technique you can produce dynamic displays which have multiple representations of your spatial data.</p>
+            <div class="row row-fluid">
+              <div id="atlasMap" style="height:400px" class="span8" data-geo-type="map" data-geo-basemap="Stamen.TonerBackground" data-geo-zoom=4>
+              </div><br/>
+<pre id="citiesLayer" class="row linenums hide" data-geo-type="featureLayer" data-geo-layer-type="csv" data-geo-map="atlasMap">48.8566,2.3522,París - Capital of France
+40.4168,-3.7038,Madrid - Capital of Spain
+41.9015,12.4608,Rome - Capital of Italy
+37.9837,23.7293,Athens - Capital of Greece
+</pre>
+              <div class="span4" style="height:400px;overflow-y:scroll;margin-top: -20px;position: relative;">
+                <table class="table table-hover table-condensed" id="tblCountries" data-table-pagesize="20" data-geo-binding="citiesLayer" >
+                  <thead>
+                    <tr>
+                      <th>Capital Name</th>
+                    </tr>
+                  </thead>
+                  <tbody data-bind="foreach: features">
+                      <tr style="cursor:pointer;" data-bind="click: $data.openPopup">
+                        <td data-bind="text: $data.properties['prop-2']"></td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <p>Created simply with the following markup:</p>
+<pre class="row prettyprint linenums">
+&lt;div id="atlasMap" 
+  style="height:400px" 
+  data-geo-type="map" 
+  data-geo-basemap="Stamen.TonerBackground" 
+  data-geo-zoom=1&gt;&lt;/div&gt;&lt;br/&gt;
+
+&lt;pre id="citiesLayer" 
+  data-geo-type="featureLayer" 
+  data-geo-layer-type="csv" 
+  data-geo-map="atlasMap"&gt;48.8566,2.3522,París - Capital of France
+40.4168,-3.7038,Madrid - Capital of Spain
+41.9015,12.4608,Rome - Capital of Italy
+37.9837,23.7293,Athens - Capital of Greece
+&lt;/pre&gt;
+
+&lt;div&gt;
+  &lt;table id="tblCapitalCities" data-geo-binding="citiesLayer" &gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Capital Name&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody data-bind="foreach: features"&gt;
+        &lt;tr style="cursor:pointer;" data-bind="click: $data.openPopup"&gt;
+          &lt;td data-bind="text: $data.properties['prop-2']"&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/div&gt;
+</pre>
+            <p><a href="./ArcGISExample.html"><strong>See a complete demo of feature data-binding for ArcGIS Layers here</strong></a></p>
+            <p><a href="./GeoJSONExample.html"><strong>See a complete demo of feature data-binding for GeoJSON Layers here</strong></a></p>
+          </section>
+          <section id="features">
+            <div class="page-header">
+              <h1>Geo Features</h1>
+            </div>
+
+            <h3>No map needed!</h3>
+            <p>Embedding geographic information in your page follows the same easy pattern as all other GEO5 functionality - include an attribute on your existing HTML.</p>
+            <p>GEO5 allows you to easily enrich your existing HTML with geographic information without the need for a visual map. In this way, your existing content can be made searchable through Spatial means.</p>
+            <p>GEO5 can enhance the experience of your users with the geographic information you include by providing popup maps, navigation instructions and a wide variety of other tools <strong>simply</strong> through the inclusion of geo attributes on your HTML.</p>
+          </section><br/><br/><br/><br/> <hr/>
+        </div>
+
+      <!-- Footer
+      ================================================== -->
+     
+
+      <footer id="footer">
+        <p class="pull-right"><a href="#top">Back to top</a></p>
+        <div class="links">
+          <a href="http://blockchain.info/fb/1BTCAUSZXymDgwRcUMWVYNLNQWVAvXScSR">donate bitcoin : 1BTCAUSZXymDgwRcUMWVYNLNQWVAvXScSR</a>
+        </div>
+        Bitcrafted by <a href="http://worldzeitgeist.org">Tiggr</a>. Contact him <a href="mailto:mr.tiggr@gmail.com">Mr dot Tiggr At gmail dot com</a>.<br/>
+        </p>
+      </footer>
+    </div>
+    <!-- Le javascript
+    ====================
+    Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./js/jquery.sharrre-1.3.4.min.js"></script>
+    <script type="text/javascript" src="./js/prettify.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-scrollspy.js"></script>
+    
+    <script type="text/javascript" src="./js/jquery.geo5.js"></script>
+    <script type="text/javascript" src="./js/application.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42891761-1', 'geo5.org');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>

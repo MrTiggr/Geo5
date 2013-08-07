@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+  <name>Mapperz &#39;My Map&#39;</name>
+  <description><![CDATA[Testing out the new My Maps Service from Google Maps]]></description>
+  <Style id="style1">
+    <IconStyle>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/ms/icons/blue-dot.png</href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="style3">
+    <LineStyle>
+      <color>40000000</color>
+      <width>3</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>1A0000FF</color>
+      <fill>1</fill>
+      <outline>1</outline>
+    </PolyStyle>
+  </Style>
+  <Style id="style4">
+    <LineStyle>
+      <color>A600CC33</color>
+      <width>10</width>
+    </LineStyle>
+  </Style>
+  <Style id="style5">
+    <LineStyle>
+      <color>40000000</color>
+      <width>3</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>73FF0000</color>
+      <fill>1</fill>
+      <outline>1</outline>
+    </PolyStyle>
+  </Style>
+  <Style id="style2">
+    <LineStyle>
+      <color>E60000FF</color>
+      <width>5</width>
+    </LineStyle>
+  </Style>
+  <Placemark>
+    <name>10 Downing Street</name>
+    <description><![CDATA[Mapperz invited to Tea with the PM<br><br><img src="http://tbn0.google.com/images?q=tbn:arc9bfQDjkwulM:http://europeforvisitors.com/europe/galleries/uk/uk_photos/london_10_downing_street_625056.jpg"><br>]]></description>
+    <styleUrl>#style1</styleUrl>
+    <Point>
+      <coordinates>-0.127458,51.503281,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>Mapperz Security Zone</name>
+    <description><![CDATA[Armed Guard Patrol Zone]]></description>
+    <styleUrl>#style3</styleUrl>
+    <Polygon>
+      <outerBoundaryIs>
+        <LinearRing>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -0.130640,51.505829,0.000000
+            -0.128140,51.506882,0.000000
+            -0.127620,51.507030,0.000000
+            -0.126922,51.505550,0.000000
+            -0.126540,51.504169,0.000000
+            -0.126340,51.504040,0.000000
+            -0.126290,51.503181,0.000000
+            -0.126360,51.501099,0.000000
+            -0.129650,51.501369,0.000000
+            -0.129480,51.502579,0.000000
+            -0.129120,51.503250,0.000000
+            -0.128890,51.503811,0.000000
+            -0.129360,51.505180,0.000000
+            -0.130640,51.505829,0.000000
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark>
+    <name>Escape Route 1</name>
+    <description><![CDATA[Security Escape Route (under 2 minutes)]]></description>
+    <styleUrl>#style4</styleUrl>
+    <LineString>
+      <tessellate>1</tessellate>
+      <coordinates>
+        -0.127480,51.503254,0.000000
+        -0.126150,51.503159,0.000000
+        -0.124883,51.503094,0.000000
+        -0.123981,51.503132,0.000000
+        -0.123402,51.503105,0.000000
+        -0.121815,51.503063,0.000000
+        -0.121257,51.504215,0.000000
+        -0.120613,51.505497,0.000000
+        -0.119583,51.506886,0.000000
+        -0.118102,51.507954,0.000000
+        -0.117265,51.508289,0.000000
+        -0.116214,51.508621,0.000000
+      </coordinates>
+    </LineString>
+  </Placemark>
+  <Placemark>
+    <name>Shape 2</name>
+    <description><![CDATA[]]></description>
+    <styleUrl>#style5</styleUrl>
+    <Polygon>
+      <outerBoundaryIs>
+        <LinearRing>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -0.121880,51.506714,0.000000
+            -0.118339,51.505577,0.000000
+            -0.117996,51.504829,0.000000
+            -0.117030,51.504295,0.000000
+            -0.118489,51.500851,0.000000
+            -0.124240,51.500835,0.000000
+            -0.123746,51.503265,0.000000
+            -0.122566,51.506405,0.000000
+            -0.121880,51.506714,0.000000
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark>
+    <name>Route &amp; Directions</name>
+    <description><![CDATA[<div dir="ltr">Edit your My Maps directions here.</div>]]></description>
+    <styleUrl>#style2</styleUrl>
+    <ExtendedData>
+      <Data name="_SnapToRoads">
+        <value>true</value>
+      </Data>
+    </ExtendedData>
+    <LineString>
+      <tessellate>1</tessellate>
+      <coordinates>
+        -0.125484,51.495277,0.000000
+        -0.115442,51.497044,0.000000
+        -0.118275,51.510239,0.000000
+        -0.141106,51.500408,0.000000
+      </coordinates>
+    </LineString>
+  </Placemark>
+</Document>
+</kml>

@@ -1,0 +1,17 @@
+ #example5{
+ 	position:absolute;
+    bottom: 45px;
+    right: 5px;
+    z-index: 101;
+    opacity: 0.8;
+}
+
+.sharrre .button{
+	float:left;
+	width:60px;
+}
+
+.buttons{
+	margin-top: 50px;
+  	margin-left: 10px;
+}

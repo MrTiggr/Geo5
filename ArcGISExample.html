@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>GEO5 - Interactive maps using HTML5 data tags, no coding!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GEO5 - Interactive maps using HTML5 data tags, no coding!">
+    <meta name="author" content="Bitcrafted by TIGGR 2013">
+
+    <!-- Le styles -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/sharrre.css"/>
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="./js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header class="subhead" id="overview">
+      <div class="container">
+        <h1>ArcGIS Feature Service with Databinding.</h1>
+        <p class="lead">Zero-Coding linked HTML interface with interactive map</p>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Docs nav
+      ================================================== -->
+      <div class="row">
+        
+        <div class="span12">
+          <!-- Global GEO5 settings
+          ================================================== -->
+          <div class="page-header">
+            <h1>San-Francisco 311 Incidents</h1>
+          </div>
+          <div class="row row-fluid">
+            <map id="mapWithLayers22" 
+              style="height:550px" 
+              class="span8" 
+              data-geo-type="map" 
+              data-geo-basemap="Esri.WorldGrayCanvas" 
+              data-geo-centre="37.78730132936438,-122.42460250854492" 
+              data-geo-zoom=16>
+            </map>
+            <a id="tempLayer22" 
+              class="hide" 
+              data-geo-type="featureLayer" 
+              data-geo-layer-type="arcgis" 
+              data-geo-map="mapWithLayers22" 
+              href="http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/SanFrancisco/311Incidents/FeatureServer/0" 
+              data-layer-popup-template="<h5>{req_type}</h5>">
+                <small>ArcGIS Feature Service Layer Showing San-Francisco 311 Incidents on Stamen.Toner basemap</small>
+            </a>
+            <div 
+              class="span4" 
+              style="height:550px;overflow-y:scroll;margin-top: -20px;position: relative;">
+              <table id="tbl311" 
+                class="table table-hover" 
+                data-geo-binding="tempLayer22" >
+                <thead>
+                  <tr>
+                    <th> </th>
+                    <th>Incident Type</th>
+                  </tr>
+                </thead>
+                <tbody data-bind="foreach: features">
+                    <tr style="cursor:pointer;" data-bind="click: $data.openPopup">
+                      <td><img data-bind="attr: { src:  $data.icon.src }"></img></td>
+                      <td>
+                        <span data-bind="text:  $data.properties.req_type"></span><br/>
+<!--
+"x":-122.42083236099995,"y":37.783370182000056},"attributes":{"objectid":7632827,"req_id":"496833","req_type":"Graffiti Complaint – Private Property","req_date":"08\/31\/2009","req_time":"14:24","address":"VAN NESS AVE and WILLOW ST","x_coord":"6006606.5","y_coord":"2113401.2","district":"6","status":1}}
+-->
+                      </td>
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div id="shareme" data-url="http://geo5.org/ArcGISExample.html" data-text="GEO5 ArcGIS Demo - Maps with no coding #geo #leafletjs #knockoutjs #arcgis"></div>
+          <hr/>
+        </div>
+      </div>  
+    </div>
+    <br/><br/><br/>
+    <footer id="footer">
+      <p class="pull-right"><a href="#top">Back to top</a></p>
+      <div class="links">
+        <a href="http://blockchain.info/fb/1BTCAUSZXymDgwRcUMWVYNLNQWVAvXScSR">donate bitcoin : 1BTCAUSZXymDgwRcUMWVYNLNQWVAvXScSR</a>
+      </div>
+      Bitcrafted by <a href="http://worldzeitgeist.org">Tiggr</a>. Contact him <a href="mailto:mr.tiggr@gmail.com">Mr dot Tiggr At gmail dot com</a>.<br/>
+      </p>
+    </footer>
+  </div>
+    <!-- Le javascript
+    ==================== -->
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./js/jquery.sharrre-1.3.4.min.js"></script>
+    <script type="text/javascript" src="./js/prettify.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.geo5.js"></script>
+    <script type="text/javascript" src="./js/application.js"></script>
+  </body>
+</html>

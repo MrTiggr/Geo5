@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>GEO5 - Interactive maps using HTML5 data tags, no coding!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GEO5 - Interactive maps using HTML5 data tags, no coding!">
+    <meta name="author" content="Bitcrafted by TIGGR 2013">
+
+    <!-- Le styles -->
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="./js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <header class="subhead" id="overview">
+      <div class="container">
+        <h1>GeoJSON Atlas Example.</h1>
+        <p class="lead">Interactive Atlas without coding</p>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Docs nav
+      ================================================== -->
+      <div class="row">
+        
+        <div class="span12">
+          <!-- Global GEO5 settings
+          ================================================== -->
+          <section id="intro">
+            <div class="page-header">
+              <h1>Countries of The World</h1>
+            </div>
+            <div class="row row-fluid">
+              <div id="atlasMap" style="height:550px" class="span8" data-geo-type="map" data-geo-basemap="Stamen.TonerBackground" data-geo-zoom=1>
+              </div><br/>
+              <a class="hide" id="countriesLayer" data-geo-type="featureLayer" data-geo-layer-type="geojson" data-geo-map="atlasMap" href="./data/countries.geo.json" data-layer-popup-template="<h5>{name}</h5>"><small>CountriesOfTheWorld GeoJSON</small>
+              </a>
+              <div class="span4" style="height:550px;overflow-y:scroll;margin-top: -20px;position: relative;">
+                <table class="table table-hover table-condensed" id="tblCountries" data-table-pagesize="20" data-geo-binding="countriesLayer" >
+                  <thead>
+                    <tr>
+                      <th> </th>
+                      <th>Name</th>
+                    </tr>
+                  </thead>
+                  <tbody data-bind="foreach: features">
+                      <tr style="cursor:pointer;" data-bind="click: $data.openPopup">
+                        <td><img data-bind="attr: { src: $data.icon.src }"></img></td>
+                        <td data-bind="text: $data.properties.name"></td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>       
+          </section>
+          <br/><br/><br/><br/> <hr/>
+        </div>
+
+      <!-- Footer
+      ================================================== -->
+     
+
+        
+    </div>
+    <footer id="footer">
+      <p class="pull-right"><a href="#top">Back to top</a></p>
+      <div class="links">
+        <a href="http://blockchain.info/fb/1BTCAUSZXymDgwRcUMWVYNLNQWVAvXScSR">donate bitcoin : 1BTCAUSZXymDgwRcUMWVYNLNQWVAvXScSR</a>
+      </div>
+      Bitcrafted by <a href="http://worldzeitgeist.org">Tiggr</a>. Contact him <a href="mailto:mr.tiggr@gmail.com">Mr dot Tiggr At gmail dot com</a>.<br/>
+      </p>
+    </footer>
+  </div>
+    <!-- Le javascript
+    ==================== -->
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="./js/prettify.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-table-nav.js"></script>
+    <script type="text/javascript" src="./js/jquery.geo5.js"></script>
+    
+    <script type="text/javascript" src="./js/application.js"></script>
+
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42891761-1', 'geo5.org');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>
